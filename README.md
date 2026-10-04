@@ -8,7 +8,7 @@ Personal academic website of Pitambar Acharya — plain HTML + CSS, hosted free 
 |---|---|
 | `index.html` | All page content (edit text here) |
 | `style.css` | Colors, fonts, layout |
-| `CNAME` | Tells GitHub Pages to serve the site at pitambaracharya.github.io |
+| `CNAME` | Tells GitHub Pages to serve the site at https://pitambaracharya.github.io/ |
 | `cv.pdf` | Your CV (the "CV" / "Download CV" links point here) — replace it whenever you update your CV |
 | `profile.jpg` | **Add yourself (optional)** — square photo; shows "PA" initials if missing |
 
