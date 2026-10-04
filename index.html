@@ -9,7 +9,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- KaTeX for mathematical notation -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
@@ -19,11 +19,11 @@
 
   <style>
     :root {
-      --text: #1b1f27;
-      --muted: #5b6270;
+      --text: #000000;
+      --muted: #262626;
       --accent: #1f4e79;      /* the one accent color */
       --rule: #e3e5e9;
-      --serif: "EB Garamond", Georgia, "Times New Roman", serif;
+      --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
       --sans: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,8 +32,8 @@
       background: #ffffff;
       color: var(--text);
       font-family: var(--serif);
-      font-size: 20px;
-      line-height: 1.6;
+      font-size: 19px;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
     a { color: var(--accent); text-decoration: none; }
@@ -48,7 +48,7 @@
       border-radius: 50%; object-fit: cover;
       border: 1px solid var(--rule);
     }
-    h1 { font-size: 2.4rem; font-weight: 500; line-height: 1.15; letter-spacing: -0.005em; }
+    h1 { font-size: 2.3rem; font-weight: 600; line-height: 1.15; letter-spacing: -0.005em; }
     .title { color: var(--muted); font-size: 1.05rem; margin-top: 6px; line-height: 1.45; }
     .title a { color: var(--muted); }
 
@@ -58,13 +58,13 @@
       font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
       display: flex; flex-wrap: wrap; gap: 6px 26px;
     }
-    nav a { color: var(--text); }
+    nav a { color: var(--text); font-weight: 500; }
     nav a:hover { color: var(--accent); text-decoration: none; }
 
     /* ---------- Sections ---------- */
     section { margin-top: 56px; }
     h2 {
-      font-family: var(--sans); font-size: 0.78rem; font-weight: 500;
+      font-family: var(--sans); font-size: 0.8rem; font-weight: 600;
       letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
       margin-bottom: 20px;
     }
@@ -79,9 +79,9 @@
       display: grid; grid-template-columns: 118px 1fr; gap: 20px;
       padding: 10px 0;
     }
-    .date { color: var(--muted); font-size: 0.95rem; padding-top: 1px; }
-    .entry-title { font-weight: 500; }
-    .entry-sub { color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+    .date { color: var(--muted); font-size: 0.92em; padding-top: 1px; }
+    .entry-title { font-weight: 600; }
+    .entry-sub { color: var(--muted); font-size: 0.95em; line-height: 1.5; }
 
     /* Publications */
     .pubs { list-style: none; counter-reset: pub; }
@@ -104,6 +104,17 @@
     ul.plain { list-style: none; }
     ul.plain li { padding: 4px 0 4px 18px; position: relative; }
     ul.plain li::before { content: "–"; position: absolute; left: 0; color: var(--muted); }
+
+    /* Teaching statement */
+    .statement {
+      border-left: 3px solid var(--accent); padding: 4px 0 4px 20px; margin: 4px 0 28px;
+    }
+    .statement p { font-size: 1.04em; }
+    .stats-focus {
+      border: 1px solid var(--rule); border-radius: 6px; padding: 18px 22px; margin-top: 26px;
+    }
+    .stats-focus h3 { margin-top: 0; }
+    ul.plain li { color: var(--text); }
 
     /* Contact */
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
@@ -160,7 +171,7 @@
       I am a Ph.D. candidate at the University of Alabama at Birmingham, advised by
       <a href="https://www.uab.edu/cas/mathematics/people/faculty-directory/yanni-zeng" target="_blank" rel="noopener">Prof. Yanni Zeng</a>.
       My research is in nonlinear partial differential equations, in particular global existence
-      and asymptotic stability for chemotaxis models arising in mathematical biology. I also work
+      of solutions for chemotaxis models arising in mathematical biology. I also work
       on problems in computational mathematics, data science, and scientific machine learning.
     </p>
     <p>
@@ -217,36 +228,78 @@
   <!-- ================= TEACHING ================= -->
   <section id="teaching">
     <h2>Teaching</h2>
+
+    <div class="statement">
+      <p>
+        I want students to understand <em>why</em> mathematics works, not only how to carry out
+        procedures. Whenever I can, I let students discover an idea before I formalize it: before
+        we cover trigonometric equations, for example, students first work through an
+        inquiry-based activity in small groups, so that the method they later learn is one they have
+        already begun to build themselves. Inquiry turns a lesson from mastering a skill into
+        understanding an idea.
+      </p>
+      <p>
+        I pair this with clear structure, frequent low-stakes practice, and real data and
+        applications, so that students leave my courses with both skill and confidence. Having
+        taught for more than ten years on two continents, I adapt my teaching to students of very
+        different backgrounds and preparation.
+      </p>
+    </div>
+
     <ul class="entries">
       <li>
         <span class="date">2022 – present</span>
         <div>
           <div class="entry-title">Instructor of Record, University of Alabama at Birmingham</div>
-          <div class="entry-sub">Calculus I (MA 125) · Precalculus: Algebra and Trigonometry (MA 107) ·
-          Precalculus: Trigonometry (MA 106) · Precalculus: Algebra (MA 105) ·
-          Introduction to Statistics (MA 180) · Intermediate Algebra (MA 102)</div>
+          <div class="entry-sub">Introduction to Statistics (MA 180) · Calculus I (MA 125) ·
+          Precalculus: Algebra and Trigonometry (MA 107) · Precalculus: Trigonometry (MA 106) ·
+          Precalculus: Algebra (MA 105) · Intermediate Algebra (MA 102)</div>
         </div>
       </li>
       <li>
         <span class="date">2020 – 2022</span>
         <div>
-          <div class="entry-title">Instructor of Record and Teaching Assistant, Florida Atlantic University</div>
-          <div class="entry-sub">Methods of Calculus · Calculus I and II (MAC 2311, 2312) ·
-          Engineering Mathematics I (MAP 3305)</div>
+          <div class="entry-title">Instructor of Record, Recitation Leader and Teaching Assistant, Florida Atlantic University</div>
+          <div class="entry-sub">Methods of Calculus (Instructor of Record) ·
+          Recitation Leader for Calculus II and Calculus III ·
+          Calculus I and II (MAC 2311, 2312) · Engineering Mathematics I (MAP 3305) ·
+          Tutor, Engineering Mathematics and Mathematics for Liberal Arts</div>
         </div>
       </li>
       <li>
         <span class="date">2015 – 2019</span>
         <div>
           <div class="entry-title">Lecturer, Himalaya College of Engineering (Tribhuvan University), Nepal</div>
-          <div class="entry-sub">Probability and Statistics · Engineering Physics (lectures and laboratory)</div>
+          <div class="entry-sub">Probability and Statistics for Engineers (B.E. and B.Sc. CSIT) ·
+          Differential Calculus · Integral Calculus · Vector Analysis · Matrix Theory ·
+          Engineering Physics (lectures and laboratory)</div>
         </div>
       </li>
     </ul>
-    <p class="muted" style="margin-top:16px; font-size:0.95rem;">
-      Teaching development: CTL LIFT Teaching Certificate (UAB Center for Teaching and Learning);
-      Inquiry-Based Learning Workshop (FAU); CRLA Certification, Levels 1 and 2 (FAU).
-    </p>
+
+    <div class="stats-focus">
+      <h3>Teaching Statistics</h3>
+      <p>
+        Statistics is a central part of my teaching. I have taught Probability and Statistics to
+        engineering and computer science students for several years in Nepal and Introduction to
+        Statistics at UAB, and I hold an M.S. in Applied Mathematics and Statistics (Biostatistics
+        track). In my statistics courses, students work with real data sets, interpret results in
+        context, and use software such as R, Python and Minitab, so that statistical reasoning
+        becomes a practical tool rather than a set of formulas.
+      </p>
+      <p style="margin-top:10px;">
+        I am prepared to teach introductory and applied statistics, probability, statistics for
+        engineers and scientists, regression and data analysis, and Bayesian methods.
+      </p>
+    </div>
+
+    <h3>Teaching Development</h3>
+    <ul class="plain">
+      <li>CTL LIFT Teaching Certificate, UAB Center for Teaching and Learning</li>
+      <li>Inquiry-Based Learning Workshop, Department of Mathematical Sciences, FAU</li>
+      <li>CRLA Certification, Levels 1 and 2, FAU Mathematics Learning Center</li>
+      <li>Flex/Online Teaching Orientation and Teaching Assistant Basics for Online Courses, FAU</li>
+    </ul>
   </section>
 
   <!-- ================= RESEARCH ================= -->
@@ -276,10 +329,9 @@
       $$
     </div>
     <p>
-      subject to initial and boundary data. The aim is to establish global existence of solutions
-      and their asymptotic stability. The analysis combines pointwise Green's function estimates in
-      the Liu–Zeng / Liu–Yu framework with a Nakamura–Nishibata boundary-cancellation energy method,
-      extended to the fully nonlinear setting.
+      subject to initial and boundary data. The goal is to prove that solutions exist globally in
+      time. The main tool is a Nakamura–Nishibata boundary-cancellation energy method, which I extend
+      to the fully nonlinear setting.
     </p>
 
     <h3>Selected Presentations</h3>
