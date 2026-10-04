@@ -28,7 +28,7 @@ Optional: add `profile.jpg`, and once you have a GitHub account, un-comment the 
    Branch: `main`, folder `/ (root)` → **Save**.
 5. **Site is live** in 1–2 minutes at `https://YOUR-USERNAME.github.io`.
 
-## Connect your domain (www.pitambaracharya.com)
+## Connect your domain (https://pitambaracharya.github.io/)
 
 At your domain registrar (GoDaddy, Namecheap, Google/Squarespace Domains, etc.), open DNS settings and add:
 
@@ -42,7 +42,7 @@ At your domain registrar (GoDaddy, Namecheap, Google/Squarespace Domains, etc.),
 
 Remove any old A/CNAME records that point elsewhere (e.g., a previous site builder).
 
-Then in GitHub **Settings → Pages → Custom domain**, enter `www.pitambaracharya.com`, click **Save**,
+Then in GitHub **Settings → Pages → Custom domain**, enter `https://pitambaracharya.github.io/`, click **Save**,
 and once the DNS check passes (minutes to a few hours), tick **Enforce HTTPS**.
 
 ## Updating later
