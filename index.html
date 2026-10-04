@@ -3,356 +3,409 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pitambar Acharya | Applied Mathematics</title>
-  <meta name="description" content="Pitambar Acharya, Ph.D. Candidate in Applied Mathematics at the University of Alabama at Birmingham. Research in nonlinear PDEs, chemotaxis models, computational mathematics, data science and machine learning.">
+  <title>Pitambar Acharya · Mathematics</title>
+  <meta name="description" content="Pitambar Acharya, Ph.D. Candidate in Applied and Computational Mathematics, University of Alabama at Birmingham. Nonlinear PDEs, chemotaxis models, mathematical biology, and scientific machine learning.">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- KaTeX for mathematical notation -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+
+  <style>
+    :root {
+      --text: #1b1f27;
+      --muted: #5b6270;
+      --accent: #1f4e79;      /* the one accent color */
+      --rule: #e3e5e9;
+      --serif: "EB Garamond", Georgia, "Times New Roman", serif;
+      --sans: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #ffffff;
+      color: var(--text);
+      font-family: var(--serif);
+      font-size: 20px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page { max-width: 780px; margin: 0 auto; padding: 64px 24px 48px; }
+
+    /* ---------- Header ---------- */
+    header { display: flex; gap: 32px; align-items: center; }
+    .photo {
+      width: 132px; height: 132px; flex-shrink: 0;
+      border-radius: 50%; object-fit: cover;
+      border: 1px solid var(--rule);
+    }
+    h1 { font-size: 2.4rem; font-weight: 500; line-height: 1.15; letter-spacing: -0.005em; }
+    .title { color: var(--muted); font-size: 1.05rem; margin-top: 6px; line-height: 1.45; }
+    .title a { color: var(--muted); }
+
+    nav {
+      margin: 36px 0 0; padding: 12px 0;
+      border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+      font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+      display: flex; flex-wrap: wrap; gap: 6px 26px;
+    }
+    nav a { color: var(--text); }
+    nav a:hover { color: var(--accent); text-decoration: none; }
+
+    /* ---------- Sections ---------- */
+    section { margin-top: 56px; }
+    h2 {
+      font-family: var(--sans); font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+      margin-bottom: 20px;
+    }
+    h3 { font-size: 1.15rem; font-weight: 600; margin: 28px 0 10px; }
+    p + p { margin-top: 14px; }
+    .muted { color: var(--muted); }
+    em { font-style: italic; }
+
+    /* Entry rows: date on the left, content on the right */
+    .entries { list-style: none; }
+    .entries li {
+      display: grid; grid-template-columns: 118px 1fr; gap: 20px;
+      padding: 10px 0;
+    }
+    .date { color: var(--muted); font-size: 0.95rem; padding-top: 1px; }
+    .entry-title { font-weight: 500; }
+    .entry-sub { color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+
+    /* Publications */
+    .pubs { list-style: none; counter-reset: pub; }
+    .pubs li { position: relative; padding: 10px 0 10px 34px; }
+    .pubs li::before {
+      counter-increment: pub; content: "[" counter(pub) "]";
+      position: absolute; left: 0; top: 10px; color: var(--muted); font-size: 0.95rem;
+    }
+    .pubs .t { font-style: italic; }
+    .pubs .me { font-weight: 600; }
+    .pubs .links { font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.04em; margin-left: 4px; }
+    .pubs .links a { margin-right: 8px; }
+    .pubs-plain li::before { content: none; }
+    .pubs-plain li { padding-left: 0; }
+
+    /* Display math */
+    .math-block { margin: 18px 0; overflow-x: auto; }
+    .katex { font-size: 1.02em; }
+
+    ul.plain { list-style: none; }
+    ul.plain li { padding: 4px 0 4px 18px; position: relative; }
+    ul.plain li::before { content: "–"; position: absolute; left: 0; color: var(--muted); }
+
+    /* Contact */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .links-list { font-family: var(--sans); font-size: 0.85rem; line-height: 2; }
+
+    footer {
+      margin-top: 72px; padding-top: 18px; border-top: 1px solid var(--rule);
+      font-family: var(--sans); font-size: 0.75rem; color: var(--muted);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+    footer a { color: var(--muted); }
+
+    /* ---------- Phones ---------- */
+    @media (max-width: 640px) {
+      body { font-size: 18px; }
+      .page { padding-top: 40px; }
+      header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .photo { width: 104px; height: 104px; }
+      h1 { font-size: 2rem; }
+      .entries li { grid-template-columns: 1fr; gap: 0; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
+<div class="page">
 
-  <!-- ============ HEADER ============ -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="#home" class="brand">
-        <span class="brand-name">Pitambar Acharya</span>
-        <span class="brand-sub">Ph.D. Candidate in Applied Mathematics · University of Alabama at Birmingham</span>
-      </a>
-
-      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
-      <label for="nav-toggle" class="nav-toggle-label"><span></span></label>
-
-      <nav class="site-nav">
-        <a href="#home">Home</a>
-        <a href="#research">Research</a>
-        <a href="#publications">Publications</a>
-        <a href="#teaching">Teaching</a>
-        <a href="cv.pdf" target="_blank" rel="noopener">CV</a>
-        <a href="#contact">Contact</a>
-      </nav>
+  <!-- ================= HEADER ================= -->
+  <header>
+    <img class="photo" src="profile.jpg" alt="Pitambar Acharya" onerror="this.style.display='none'">
+    <div>
+      <h1>Pitambar Acharya</h1>
+      <p class="title">
+        Ph.D. Candidate in Applied and Computational Mathematics<br>
+        <a href="https://www.uab.edu/cas/mathematics/" target="_blank" rel="noopener">Department of Mathematics</a>, University of Alabama at Birmingham
+      </p>
     </div>
   </header>
 
-  <main>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#teaching">Teaching</a>
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#service">Service</a>
+    <a href="cv.pdf" target="_blank" rel="noopener">CV</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-    <!-- ============ HERO / HOME ============ -->
-    <section id="home" class="hero">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <p class="tags">PDEs · Computational Mathematics · Machine Learning</p>
-          <h1>Pitambar Acharya</h1>
-          <p class="lead">
-            I study mathematical and computational problems arising in nonlinear partial
-            differential equations, with broader interests in data science and scientific
-            machine learning.
-          </p>
-          <p>
-            I am a Ph.D. candidate in Applied and Computational Mathematics at the University
-            of Alabama at Birmingham, advised by
-            <a href="https://www.uab.edu/cas/mathematics/people/faculty-directory/yanni-zeng" target="_blank" rel="noopener"><strong>Prof. Yanni Zeng</strong></a>
-            (expected graduation Spring 2027). My research focuses on global existence and
-            stability for chemotaxis models with logistic growth and logarithmic sensitivity.
-            I am also an experienced instructor of Intermediate Algebra, Precalculus, Calculus and Probability/Statistics.
-          </p>
-          <div class="buttons">
-            <a href="#research" class="btn">Research</a>
-            <a href="#publications" class="btn">Publications</a>
-            <a href="cv.pdf" class="btn btn-primary" target="_blank" rel="noopener">Download CV</a>
-          </div>
+  <!-- ================= ABOUT ================= -->
+  <section id="about">
+    <p>
+      I am a Ph.D. candidate at the University of Alabama at Birmingham, advised by
+      <a href="https://www.uab.edu/cas/mathematics/people/faculty-directory/yanni-zeng" target="_blank" rel="noopener">Prof. Yanni Zeng</a>.
+      My research is in nonlinear partial differential equations, in particular global existence
+      and asymptotic stability for chemotaxis models arising in mathematical biology. I also work
+      on problems in computational mathematics, data science, and scientific machine learning.
+    </p>
+    <p>
+      I have taught mathematics for over ten years, at UAB, Florida Atlantic University, and
+      Tribhuvan University in Nepal, including Intermediate Algebra, Precalculus, Calculus, and
+      Probability and Statistics. I expect to complete my Ph.D. in Spring 2027 and am currently
+      seeking tenure-track faculty positions.
+    </p>
+  </section>
+
+  <!-- ================= EDUCATION ================= -->
+  <section id="education">
+    <h2>Education</h2>
+    <ul class="entries">
+      <li>
+        <span class="date">2022 – 2027</span>
+        <div>
+          <div class="entry-title">Ph.D., Applied and Computational Mathematics</div>
+          <div class="entry-sub">University of Alabama at Birmingham (expected Spring 2027)<br>
+          Advisor: Prof. Yanni Zeng</div>
         </div>
-        <div class="hero-photo">
-          <!-- Put a photo named profile.jpg in the repository to show it here -->
-          <img src="profile.jpg" alt="Pitambar Acharya" onerror="this.remove();">
-          <span class="initials">PA</span>
+      </li>
+      <li>
+        <span class="date">2025</span>
+        <div>
+          <div class="entry-title">M.S., Mathematics</div>
+          <div class="entry-sub">University of Alabama at Birmingham</div>
         </div>
-      </div>
-    </section>
-
-    <!-- ============ RESEARCH ============ -->
-    <section id="research" class="section">
-      <div class="container">
-        <h2>Research</h2>
-        <p class="tags spaced">Partial Differential Equations · Mathematical Biology &amp; Chemotaxis · Data Science · Machine Learning · Scientific Computing</p>
-        <div class="cards">
-          <article class="card">
-            <h3>Partial Differential Equations</h3>
-            <p>
-              Global existence and asymptotic stability for chemotaxis models and
-              hyperbolic–parabolic systems, with emphasis on initial–boundary value
-              problems on the half-line and quarter plane.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Computational Mathematics</h3>
-            <p>
-              Modeling and analysis of transport phenomena: advection–diffusion with
-              variable diffusivity and contaminant dispersion in turbulent atmospheric flows.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Data Science &amp; Machine Learning</h3>
-            <p>
-              Machine learning for turbulence prediction, spectral embedding on data graphs,
-              adaptive filtering, and operator learning for PDEs.
-            </p>
-          </article>
+      </li>
+      <li>
+        <span class="date">2020 – 2022</span>
+        <div>
+          <div class="entry-title">M.S., Applied Mathematics and Statistics</div>
+          <div class="entry-sub">Florida Atlantic University</div>
         </div>
-
-        <div class="feature">
-          <h3>Dissertation</h3>
-          <p class="feature-title">
-            Global Existence of Solutions on the Quarter Plane for a Chemotaxis Model with
-            Logistic Growth and Logarithmic Sensitivity
-          </p>
-          <p>
-            The work combines pointwise Green's function estimates in the Liu–Zeng / Liu–Yu
-            framework with a Nakamura–Nishibata boundary-cancellation energy method
-            extended to the fully nonlinear setting.
-          </p>
-          <p class="muted">Advisor: Prof. Yanni Zeng · University of Alabama at Birmingham</p>
+      </li>
+      <li>
+        <span class="date">2012 – 2014</span>
+        <div>
+          <div class="entry-title">M.Sc., Mathematics</div>
+          <div class="entry-sub">Tribhuvan University, Kathmandu, Nepal</div>
         </div>
-
-        <h3 class="sub">Selected Presentations</h3>
-        <ul class="pubs">
-          <li>
-            <span class="year">2025</span>
-            <div>
-              <p class="pub-title">Learning the Solution Operator of the Heat Equation</p>
-              <p class="pub-meta">Summer School on Scientific Machine Learning, Brin Mathematics Research Center, University of Maryland</p>
-            </div>
-          </li>
-          <li>
-            <span class="year">2025</span>
-            <div>
-              <p class="pub-title">On One-Dimensional Advection–Diffusion Equation with Variable Diffusivity</p>
-              <p class="pub-meta">MAA–FTYCMA Joint Conference, Embry-Riddle Aeronautical University, Daytona Beach</p>
-            </div>
-          </li>
-          <li>
-            <span class="year">2022</span>
-            <div>
-              <p class="pub-title">Bayesian Model Averaging: An Overview</p>
-              <p class="pub-meta">M.S. Presentation, Florida Atlantic University</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============ PUBLICATIONS ============ -->
-    <section id="publications" class="section alt">
-      <div class="container">
-        <h2>Publications</h2>
-
-        <h3 class="sub first">Peer-Reviewed Journal Articles</h3>
-        <ul class="pubs">
-          <li>
-            <span class="year">2026</span>
-            <div>
-              <p class="pub-title">Leveraging Advanced Machine Learning to Predict Turbulence Dynamics From Temperature Observations at an Experimental Prescribed Fire</p>
-              <p class="pub-meta">D. Dulal, M. Gallagher, C. Navasca, <strong>P. Acharya</strong>, N. Skowronski · <em>IEEE Access</em>, 14, 112481–112498</p>
-              <p class="pub-links"><a href="https://doi.org/10.1109/ACCESS.2026.3715743" target="_blank" rel="noopener">DOI</a></p>
-            </div>
-          </li>
-          <li>
-            <span class="year">2026</span>
-            <div>
-              <p class="pub-title">Adaptive Filtering via Canonical Systems with Time-Varying Hamiltonians</p>
-              <p class="pub-meta">K. Acharya, <strong>P. Acharya</strong> · <em>International Journal of Advances in Engineering Sciences and Applied Mathematics</em> (Springer Nature), 18, 20–30</p>
-              <p class="pub-links"><a href="https://doi.org/10.1007/s12572-026-00421-5" target="_blank" rel="noopener">DOI</a></p>
-            </div>
-          </li>
-          <li>
-            <span class="year">2026</span>
-            <div>
-              <p class="pub-title">On One-Dimensional Advection–Diffusion Equation with Variable Diffusivity</p>
-              <p class="pub-meta">E. P. Poudel, <strong>P. Acharya</strong>, J. Kafle, S. Khadka · <em>Applied Mathematics: A Journal of Chinese Universities</em> (Springer Nature), 41, 181–193</p>
-              <p class="pub-links"><a href="https://doi.org/10.1007/s11766-026-5149-9" target="_blank" rel="noopener">DOI</a></p>
-            </div>
-          </li>
-        </ul>
-
-        <h3 class="sub">Submitted &amp; In Preparation</h3>
-        <ul class="pubs">
-          <li>
-            <span class="year">Sub.</span>
-            <div>
-              <p class="pub-title">Modeling and Analysis of Two-Dimensional Contaminant Dispersion in Turbulent Atmospheric Flows</p>
-              <p class="pub-meta">E. P. Poudel, <strong>P. Acharya</strong>, J. Kafle, S. Khadka · Submitted to <em>Electronic Journal of Differential Equations</em></p>
-            </div>
-          </li>
-          <li>
-            <span class="year">Sub.</span>
-            <div>
-              <p class="pub-title">Predicting Anemia Among Under-Five Children in Nepal Using Machine Learning and Deep Learning</p>
-              <p class="pub-meta">D. Bastola, <strong>P. Acharya</strong>, D. Dulal · Submitted to <em>Public Health Nutrition</em></p>
-              <p class="pub-links"><a href="https://arxiv.org/html/2602.01005v1" target="_blank" rel="noopener">Preprint</a></p>
-            </div>
-          </li>
-          <li>
-            <span class="year">Prep.</span>
-            <div>
-              <p class="pub-title">Random Schrödinger Operators on Data Graphs: A Data Science Perspective on Robust Spectral Embedding</p>
-              <p class="pub-meta">K. Acharya, <strong>P. Acharya</strong>, D. Bastola · Manuscript in preparation</p>
-            </div>
-          </li>
-        </ul>
-
-        <h3 class="sub">Additional Research Projects</h3>
-        <ul class="pubs">
-          <li>
-            <span class="year">—</span>
-            <div>
-              <p class="pub-title">Comparative Analysis of Data Mining Techniques for Customer Segmentation and Anomaly Detection</p>
-              <p class="pub-meta"><strong>P. Acharya</strong>, L. Zeng, M. Islam</p>
-              <p class="pub-links"><a href="https://figshare.com/articles/preprint/Comparative_Analysis_of_Data_Mining_Techniques_for_Customer_Segmentation_and_Anomaly_Detection/33402334?file=68088160" target="_blank" rel="noopener">Figshare</a></p>
-            </div>
-          </li>
-          <li>
-            <span class="year">—</span>
-            <div>
-              <p class="pub-title">Bin Packing Problem with Machine Learning Techniques</p>
-              <p class="pub-meta">M. Islam, H. Akther Samia, <strong>P. Acharya</strong></p>
-              <p class="pub-links"><a href="https://figshare.com/articles/preprint/Bin_Packing_Problem_with_Machine_Learning_Techniques/33402397?file=68088988" target="_blank" rel="noopener">Figshare</a></p>
-            </div>
-          </li>
-          <li>
-            <span class="year">—</span>
-            <div>
-              <p class="pub-title">Deep Q-Learning for Optimizing Bin Packing Problem: A Deep Reinforcement Learning Approach</p>
-              <p class="pub-meta"><strong>P. Acharya</strong>, O. Francis, M. Islam</p>
-            </div>
-          </li>
-        </ul>
-        <p class="muted note">Full list on <a href="https://scholar.google.com/citations?user=-syT6QcAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>.</p>
-      </div>
-    </section>
-
-    <!-- ============ TEACHING ============ -->
-    <section id="teaching" class="section">
-      <div class="container">
-        <h2>Teaching</h2>
-        <p class="tags spaced">Precalculus · Calculus · Statistics · Engineering Mathematics · Probability &amp; Statistics</p>
-
-        <div class="timeline">
-          <div class="t-item">
-            <div class="t-date">2022 – Present</div>
-            <div>
-              <h3>Instructor of Record · University of Alabama at Birmingham</h3>
-              <ul class="plain">
-                <li>Calculus I (MA 125/125L)</li>
-                <li>Precalculus: Algebra/Trigonometry (MA 107 QL)</li>
-                <li>Precalculus: Trigonometry (MA 106)</li>
-                <li>Introduction to Statistics (MA 180)</li>
-                <li>Precalculus: Algebra (MA 105)</li>
-                <li>Intermediate Algebra (MA 102)</li>
-              </ul>
-            </div>
-          </div>
-          <div class="t-item">
-            <div class="t-date">2020 – 2022</div>
-            <div>
-              <h3>Instructor of Record &amp; Teaching Assistant · Florida Atlantic University</h3>
-              <ul class="plain">
-                <li>Methods of Calculus (Instructor of Record)</li>
-                <li>Calculus I &amp; II (MAC 2311, MAC 2312)</li>
-                <li>Engineering Mathematics I (MAP 3305)</li>
-              </ul>
-            </div>
-          </div>
-          <div class="t-item">
-            <div class="t-date">2015 – 2019</div>
-            <div>
-              <h3>Lecturer · Himalaya College of Engineering (Tribhuvan University), Nepal</h3>
-              <ul class="plain">
-                <li>Probability and Statistics for BE and BSc CSIT programs</li>
-                <li>Engineering Physics (lectures and labs)</li>
-              </ul>
-            </div>
-          </div>
+      </li>
+      <li>
+        <span class="date">2010 – 2012</span>
+        <div>
+          <div class="entry-title">M.Sc., Physics</div>
+          <div class="entry-sub">Tribhuvan University, Kathmandu, Nepal</div>
         </div>
+      </li>
+    </ul>
+  </section>
 
-        <div class="two-col">
-          <div>
-            <h3>Teaching Development</h3>
-            <ul class="plain">
-              <li>CTL LIFT Teaching Certificate, UAB Center for Teaching and Learning</li>
-              <li>Inquiry-Based Learning Workshop, FAU</li>
-              <li>CRLA Certification Levels 1 &amp; 2, FAU Mathematics Learning Center</li>
-            </ul>
-          </div>
-          <div>
-            <h3>Outreach &amp; Service</h3>
-            <ul class="plain">
-              <li>IMO Deputy Leader, Nepal (Rio de Janeiro 2017, Bath 2019)</li>
-              <li>Vice President, Mathematical Association of Nepal (2017–2019)</li>
-              <li>Secretary, SIAM Student Chapter, UAB</li>
-              <li>Volunteer, Alabama Statewide Mathematics Contests</li>
-            </ul>
-          </div>
+  <!-- ================= TEACHING ================= -->
+  <section id="teaching">
+    <h2>Teaching</h2>
+    <ul class="entries">
+      <li>
+        <span class="date">2022 – present</span>
+        <div>
+          <div class="entry-title">Instructor of Record, University of Alabama at Birmingham</div>
+          <div class="entry-sub">Calculus I (MA 125) · Precalculus: Algebra and Trigonometry (MA 107) ·
+          Precalculus: Trigonometry (MA 106) · Precalculus: Algebra (MA 105) ·
+          Introduction to Statistics (MA 180) · Intermediate Algebra (MA 102)</div>
         </div>
-      </div>
-    </section>
-
-    <!-- ============ EDUCATION & AWARDS ============ -->
-    <section id="education" class="section alt">
-      <div class="container">
-        <div class="two-col top">
-          <div>
-            <h2>Education</h2>
-            <ul class="edu">
-              <li><strong>Ph.D., Applied and Computational Mathematics</strong><span>University of Alabama at Birmingham · expected 2027</span></li>
-              <li><strong>M.S., Mathematics</strong><span>University of Alabama at Birmingham · 2025</span></li>
-              <li><strong>M.S., Applied Mathematics and Statistics</strong><span>Florida Atlantic University · 2022</span></li>
-              <li><strong>M.Sc., Mathematics</strong><span>Tribhuvan University, Nepal · 2014</span></li>
-              <li><strong>M.Sc., Physics</strong><span>Tribhuvan University, Nepal · 2012</span></li>
-            </ul>
-          </div>
-          <div>
-            <h2>Awards</h2>
-            <ul class="edu">
-              <li><strong>James Robert Ward, Jr. Memorial Endowed Award</strong><span>Excellence in Differential Equations / Mathematical Biology, UAB · 2025</span></li>
-              <li><strong>Travel Award</strong><span>Ohio River Analysis Meeting, University of Cincinnati · 2025</span></li>
-              <li><strong>Professional Development Stipend</strong><span>Blazer Core Curriculum, UAB · 2024</span></li>
-              <li><strong>Travel Award</strong><span>Texas Summer School in Mathematical Physics · 2023</span></li>
-            </ul>
-          </div>
+      </li>
+      <li>
+        <span class="date">2020 – 2022</span>
+        <div>
+          <div class="entry-title">Instructor of Record and Teaching Assistant, Florida Atlantic University</div>
+          <div class="entry-sub">Methods of Calculus · Calculus I and II (MAC 2311, 2312) ·
+          Engineering Mathematics I (MAP 3305)</div>
         </div>
-      </div>
-    </section>
-
-    <!-- ============ CONTACT ============ -->
-    <section id="contact" class="section">
-      <div class="container">
-        <h2>Contact</h2>
-        <div class="two-col">
-          <address>
-            <strong>Pitambar Acharya</strong><br>
-            Department of Mathematics<br>
-            University of Alabama at Birmingham<br>
-            Birmingham, AL, USA<br>
-            <a href="mailto:pacharya@uab.edu">pacharya@uab.edu</a>
-          </address>
-          <div class="contact-links">
-            <a href="mailto:pacharya@uab.edu">Email</a>
-            <a href="https://scholar.google.com/citations?user=-syT6QcAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
-            <a href="https://orcid.org/0009-0009-5869-2955" target="_blank" rel="noopener">ORCID</a>
-            <a href="https://www.linkedin.com/in/pitambar-acharya-b28018237/" target="_blank" rel="noopener">LinkedIn</a>
-            <!-- Add your GitHub link here once you have it:
-            <a href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener">GitHub</a> -->
-          </div>
+      </li>
+      <li>
+        <span class="date">2015 – 2019</span>
+        <div>
+          <div class="entry-title">Lecturer, Himalaya College of Engineering (Tribhuvan University), Nepal</div>
+          <div class="entry-sub">Probability and Statistics · Engineering Physics (lectures and laboratory)</div>
         </div>
-      </div>
-    </section>
+      </li>
+    </ul>
+    <p class="muted" style="margin-top:16px; font-size:0.95rem;">
+      Teaching development: CTL LIFT Teaching Certificate (UAB Center for Teaching and Learning);
+      Inquiry-Based Learning Workshop (FAU); CRLA Certification, Levels 1 and 2 (FAU).
+    </p>
+  </section>
 
-  </main>
+  <!-- ================= RESEARCH ================= -->
+  <section id="research">
+    <h2>Research</h2>
+    <p>
+      <strong>Interests:</strong> partial differential equations, mathematical biology and chemotaxis,
+      hyperbolic–parabolic systems, computational mathematics, data science, and machine learning.
+    </p>
 
-  <footer class="site-footer">
-    <div class="container">
-        <p>© 2026 Pitambar Acharya · <a href="https://pitambaracharya.github.io">pitambaracharya.github.io</a></p>
+    <h3>Dissertation</h3>
+    <p>
+      <em>Global Existence of Solutions on the Quarter Plane for a Chemotaxis Model with Logistic
+      Growth and Logarithmic Sensitivity.</em>
+    </p>
+    <p>
+      I study a Keller–Segel type system with logarithmic sensitivity and logistic growth on the
+      half-line \(x&gt;0\), of the form
+    </p>
+    <div class="math-block">
+      $$
+      \begin{cases}
+        u_t = D\,u_{xx} - \chi\,\big(u\,(\ln v)_x\big)_x + a\,u\left(1-\dfrac{u}{K}\right),\\[6pt]
+        v_t = \varepsilon\, v_{xx} - \mu\, u\, v,
+      \end{cases}
+      \qquad x>0,\ t>0,
+      $$
     </div>
+    <p>
+      subject to initial and boundary data. The aim is to establish global existence of solutions
+      and their asymptotic stability. The analysis combines pointwise Green's function estimates in
+      the Liu–Zeng / Liu–Yu framework with a Nakamura–Nishibata boundary-cancellation energy method,
+      extended to the fully nonlinear setting.
+    </p>
+
+    <h3>Selected Presentations</h3>
+    <ul class="entries">
+      <li>
+        <span class="date">Aug 2025</span>
+        <div>
+          <div class="entry-title">Learning the Solution Operator of the Heat Equation</div>
+          <div class="entry-sub">Summer School on Scientific Machine Learning, Brin Mathematics Research Center, University of Maryland</div>
+        </div>
+      </li>
+      <li>
+        <span class="date">Feb 2025</span>
+        <div>
+          <div class="entry-title">On One-Dimensional Advection–Diffusion Equation with Variable Diffusivity</div>
+          <div class="entry-sub">MAA–FTYCMA Joint Conference, Embry-Riddle Aeronautical University</div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ================= PUBLICATIONS ================= -->
+  <section id="publications">
+    <h2>Publications</h2>
+
+    <h3 style="margin-top:0;">Journal Articles</h3>
+    <ol class="pubs">
+      <li>
+        D. Dulal, M. Gallagher, C. Navasca, <span class="me">P. Acharya</span>, and N. Skowronski.
+        <span class="t">Leveraging advanced machine learning to predict turbulence dynamics from temperature
+        observations at an experimental prescribed fire.</span> IEEE Access 14 (2026), 112481–112498.
+        <span class="links"><a href="https://doi.org/10.1109/ACCESS.2026.3715743" target="_blank" rel="noopener">DOI</a></span>
+      </li>
+      <li>
+        K. Acharya and <span class="me">P. Acharya</span>.
+        <span class="t">Adaptive filtering via canonical systems with time-varying Hamiltonians.</span>
+        Int. J. Adv. Eng. Sci. Appl. Math. 18 (2026), 20–30.
+        <span class="links"><a href="https://doi.org/10.1007/s12572-026-00421-5" target="_blank" rel="noopener">DOI</a></span>
+      </li>
+      <li>
+        E. P. Poudel, <span class="me">P. Acharya</span>, J. Kafle, and S. Khadka.
+        <span class="t">On one-dimensional advection–diffusion equation with variable diffusivity.</span>
+        Appl. Math. J. Chinese Univ. 41 (2026), 181–193.
+        <span class="links"><a href="https://doi.org/10.1007/s11766-026-5149-9" target="_blank" rel="noopener">DOI</a></span>
+      </li>
+    </ol>
+
+    <h3>Submitted and in Preparation</h3>
+    <ol class="pubs" start="4" style="counter-reset: pub 3;">
+      <li>
+        E. P. Poudel, <span class="me">P. Acharya</span>, J. Kafle, and S. Khadka.
+        <span class="t">Modeling and analysis of two-dimensional contaminant dispersion in turbulent
+        atmospheric flows.</span> Submitted to Electron. J. Differential Equations.
+      </li>
+      <li>
+        D. Bastola, <span class="me">P. Acharya</span>, and D. Dulal.
+        <span class="t">Predicting anemia among under-five children in Nepal using machine learning and
+        deep learning.</span> Submitted to Public Health Nutrition.
+        <span class="links"><a href="https://arxiv.org/html/2602.01005v1" target="_blank" rel="noopener">Preprint</a></span>
+      </li>
+      <li>
+        K. Acharya, <span class="me">P. Acharya</span>, and D. Bastola.
+        <span class="t">Random Schrödinger operators on data graphs: a data science perspective on robust
+        spectral embedding.</span> In preparation.
+      </li>
+    </ol>
+    <p class="muted" style="margin-top:14px;">
+      See also <a href="https://scholar.google.com/citations?user=-syT6QcAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>.
+    </p>
+  </section>
+
+  <!-- ================= AWARDS & SERVICE ================= -->
+  <section id="service">
+    <h2>Awards and Service</h2>
+    <ul class="entries">
+      <li>
+        <span class="date">2025</span>
+        <div><div class="entry-title">James Robert Ward, Jr. Memorial Endowed Award</div>
+        <div class="entry-sub">For excellence in graduate studies in differential equations / mathematical biology, UAB</div></div>
+      </li>
+      <li>
+        <span class="date">2023 – 2025</span>
+        <div><div class="entry-title">Travel Awards</div>
+        <div class="entry-sub">Ohio River Analysis Meeting (2025); Texas Summer School in Mathematical Physics (2023)</div></div>
+      </li>
+      <li>
+        <span class="date">2024 – present</span>
+        <div><div class="entry-title">Secretary, SIAM Student Chapter, UAB</div></div>
+      </li>
+      <li>
+        <span class="date">2017, 2019</span>
+        <div><div class="entry-title">Deputy Leader, International Mathematical Olympiad</div>
+        <div class="entry-sub">Team Nepal, Rio de Janeiro (2017) and Bath (2019)</div></div>
+      </li>
+      <li>
+        <span class="date">2017 – 2019</span>
+        <div><div class="entry-title">Vice President, Mathematical Association of Nepal</div></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-grid">
+      <p>
+        Department of Mathematics<br>
+        University of Alabama at Birmingham<br>
+        Birmingham, AL, USA<br>
+        <a href="mailto:pacharya@uab.edu">pacharya@uab.edu</a>
+      </p>
+      <div class="links-list">
+        <a href="cv.pdf" target="_blank" rel="noopener">Curriculum Vitae (PDF)</a><br>
+        <a href="https://scholar.google.com/citations?user=-syT6QcAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a><br>
+        <a href="https://orcid.org/0009-0009-5869-2955" target="_blank" rel="noopener">ORCID</a><br>
+        <a href="https://www.linkedin.com/in/pitambar-acharya-b28018237/" target="_blank" rel="noopener">LinkedIn</a><br>
+        <a href="https://github.com/pitambaracharya" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Pitambar Acharya</span>
+    <span>Last updated October 2026</span>
   </footer>
 
+</div>
 </body>
 </html>
