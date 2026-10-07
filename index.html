@@ -9,7 +9,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
   <!-- KaTeX for mathematical notation -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
@@ -19,166 +19,137 @@
 
   <style>
     :root {
-      --text: #000000;
-      --muted: #262626;
-      --accent: #1f4e79;      /* the one accent color */
-      --rule: #e3e5e9;
-      --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
-      --sans: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+      --text: #111111;
+      --muted: #333333;
+      --heading: #222222;
+      --accent: #1f5f8b;
+      --rule: #e5e5e5;
+      --sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      background: #ffffff;
-      color: var(--text);
-      font-family: var(--serif);
-      font-size: 19px;
-      line-height: 1.65;
+      background: #ffffff; color: var(--text);
+      font-family: var(--sans); font-size: 18px; line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+    a:hover { color: #0d3d5c; }
 
-    .page { max-width: 780px; margin: 0 auto; padding: 64px 24px 48px; }
+    /* ---------- Two-column layout ---------- */
+    .layout {
+      max-width: 1100px; margin: 0 auto; padding: 48px 32px;
+      display: grid; grid-template-columns: 220px 1fr; gap: 64px;
+    }
 
-    /* ---------- Header ---------- */
-    header { display: flex; gap: 32px; align-items: center; }
+    /* ---------- Sidebar ---------- */
+    .sidebar { position: sticky; top: 48px; align-self: start; }
     .photo {
-      width: 132px; height: 132px; flex-shrink: 0;
-      border-radius: 50%; object-fit: cover;
-      border: 1px solid var(--rule);
+      width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
+      border: 1px solid var(--rule); display: block;
     }
-    h1 { font-size: 2.3rem; font-weight: 600; line-height: 1.15; letter-spacing: -0.005em; }
-    .title { color: var(--muted); font-size: 1.05rem; margin-top: 6px; line-height: 1.45; }
-    .title a { color: var(--muted); }
+    .sidebar .name { font-size: 1.3rem; font-weight: 700; line-height: 1.2; margin-top: 18px; color: var(--heading); }
+    .sidebar .role { font-size: 0.92rem; color: var(--muted); margin-top: 8px; line-height: 1.4; }
+    .sidebar ul { list-style: none; margin-top: 20px; font-size: 0.9rem; }
+    .sidebar li { display: flex; align-items: center; gap: 10px; padding: 4px 0; color: var(--muted); }
+    .sidebar li a { color: var(--muted); text-decoration: none; }
+    .sidebar li a:hover { color: var(--accent); text-decoration: underline; }
+    .sidebar svg { width: 15px; height: 15px; flex-shrink: 0; fill: var(--heading); }
 
-    nav {
-      margin: 36px 0 0; padding: 12px 0;
-      border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
-      font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
-      display: flex; flex-wrap: wrap; gap: 6px 26px;
-    }
-    nav a { color: var(--text); font-weight: 500; }
-    nav a:hover { color: var(--accent); text-decoration: none; }
-
-    /* ---------- Sections ---------- */
-    section { margin-top: 56px; }
-    h2 {
-      font-family: var(--sans); font-size: 0.8rem; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
-      margin-bottom: 20px;
-    }
-    h3 { font-size: 1.15rem; font-weight: 600; margin: 28px 0 10px; }
+    /* ---------- Main content ---------- */
+    .content { max-width: 720px; min-width: 0; }
+    .sidebar, .content { min-width: 0; }
+    .katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+    section { margin-bottom: 44px; }
+    h2 { font-size: 1.75rem; font-weight: 700; color: var(--heading); margin-bottom: 14px; line-height: 1.25; }
+    h3 { font-size: 1.12rem; font-weight: 700; color: var(--heading); margin: 26px 0 8px; }
     p + p { margin-top: 14px; }
     .muted { color: var(--muted); }
-    em { font-style: italic; }
+    strong { font-weight: 700; }
 
-    /* Entry rows: date on the left, content on the right */
     .entries { list-style: none; }
-    .entries li {
-      display: grid; grid-template-columns: 118px 1fr; gap: 20px;
-      padding: 10px 0;
-    }
+    .entries li { display: grid; grid-template-columns: 120px 1fr; gap: 18px; padding: 9px 0; }
     .date { color: var(--muted); font-size: 0.92em; padding-top: 1px; }
     .entry-title { font-weight: 600; }
     .entry-sub { color: var(--muted); font-size: 0.95em; line-height: 1.5; }
 
-    /* Publications */
-    .pubs { list-style: none; counter-reset: pub; }
-    .pubs li { position: relative; padding: 10px 0 10px 34px; }
-    .pubs li::before {
-      counter-increment: pub; content: "[" counter(pub) "]";
-      position: absolute; left: 0; top: 10px; color: var(--muted); font-size: 0.95rem;
-    }
-    .pubs .t { font-style: italic; }
-    .pubs .me { font-weight: 600; }
-    .pubs .links { font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.04em; margin-left: 4px; }
-    .pubs .links a { margin-right: 8px; }
-    .pubs-plain li::before { content: none; }
-    .pubs-plain li { padding-left: 0; }
+    .statement { border-left: 3px solid var(--accent); padding: 2px 0 2px 18px; margin: 4px 0 24px; }
+    .stats-focus { background: #f7f7f7; border-radius: 6px; padding: 18px 22px; margin-top: 24px; }
+    .stats-focus h3 { margin-top: 0; }
 
-    /* Display math */
-    .math-block { margin: 18px 0; overflow-x: auto; }
-    .katex { font-size: 1.02em; }
+    .pubs { list-style: none; counter-reset: pub; }
+    .pubs li { position: relative; padding: 8px 0 8px 34px; }
+    .pubs li::before { counter-increment: pub; content: "[" counter(pub) "]"; position: absolute; left: 0; top: 8px; color: var(--muted); }
+    .pubs .t { font-style: italic; }
+    .pubs .me { font-weight: 700; }
+    .pubs .links { font-size: 0.85em; margin-left: 4px; }
+    .pubs .links a { margin-right: 8px; }
+
+    .math-block { margin: 16px 0; overflow-x: auto; }
 
     ul.plain { list-style: none; }
-    ul.plain li { padding: 4px 0 4px 18px; position: relative; }
+    ul.plain li { padding: 3px 0 3px 18px; position: relative; }
     ul.plain li::before { content: "–"; position: absolute; left: 0; color: var(--muted); }
 
-    /* Teaching statement */
-    .statement {
-      border-left: 3px solid var(--accent); padding: 4px 0 4px 20px; margin: 4px 0 28px;
-    }
-    .statement p { font-size: 1.04em; }
-    .stats-focus {
-      border: 1px solid var(--rule); border-radius: 6px; padding: 18px 22px; margin-top: 26px;
-    }
-    .stats-focus h3 { margin-top: 0; }
-    ul.plain li { color: var(--text); }
-
-    /* Contact */
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .links-list { font-family: var(--sans); font-size: 0.85rem; line-height: 2; }
+    .links-list { line-height: 1.9; }
 
-    footer {
-      margin-top: 72px; padding-top: 18px; border-top: 1px solid var(--rule);
-      font-family: var(--sans); font-size: 0.75rem; color: var(--muted);
-      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
-    }
+    footer { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--rule); font-size: 0.82rem; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
     footer a { color: var(--muted); }
 
-    /* ---------- Phones ---------- */
-    @media (max-width: 640px) {
-      body { font-size: 18px; }
-      .page { padding-top: 40px; }
-      header { flex-direction: column; align-items: flex-start; gap: 20px; }
-      .photo { width: 104px; height: 104px; }
-      h1 { font-size: 2rem; }
+    /* ---------- Tablets and phones ---------- */
+    @media (max-width: 820px) {
+      .layout { grid-template-columns: 1fr; gap: 32px; padding: 32px 20px; }
+      .sidebar { position: static; display: grid; grid-template-columns: 110px 1fr; gap: 0 20px; align-items: center; border-bottom: 1px solid var(--rule); padding-bottom: 24px; }
+      .photo { width: 110px; height: 110px; grid-row: span 2; }
+      .sidebar .name { margin-top: 0; }
+      .sidebar ul { grid-column: 1 / -1; margin-top: 16px; display: flex; flex-wrap: wrap; gap: 4px 18px; }
+    }
+    @media (max-width: 560px) {
+      body { font-size: 17px; }
       .entries li { grid-template-columns: 1fr; gap: 0; }
       .contact-grid { grid-template-columns: 1fr; }
+      h2 { font-size: 1.5rem; }
     }
   </style>
 </head>
 <body>
-<div class="page">
+<div class="layout">
 
-  <!-- ================= HEADER ================= -->
-  <header>
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar">
     <img class="photo" src="profile.jpg" alt="Pitambar Acharya" onerror="this.style.display='none'">
-    <div>
-      <h1>Pitambar Acharya</h1>
-      <p class="title">
-        Ph.D. Candidate in Applied and Computational Mathematics<br>
-        <a href="https://www.uab.edu/cas/mathematics/" target="_blank" rel="noopener">Department of Mathematics</a>, University of Alabama at Birmingham
-      </p>
-    </div>
-  </header>
+    <div class="name">Pitambar Acharya</div>
+    <div class="role">Ph.D. Candidate in Mathematics<br>@ <a href="https://www.uab.edu/cas/mathematics/" target="_blank" rel="noopener" style="color:inherit;">UAB</a></div>
+    <ul>
+      <li><svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>Birmingham, AL</li>
+      <li><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="mailto:pacharya@uab.edu">Email</a></li>
+      <li><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13zM8 13h8v2H8v-2zm0 4h8v2H8v-2z"/></svg><a href="cv.pdf" target="_blank" rel="noopener">CV</a></li>
+      <li><svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zm-6.8 9.3V16c0 1.7 3 4 6.8 4s6.8-2.3 6.8-4v-3.7L12 16l-6.8-3.7z"/></svg><a href="https://scholar.google.com/citations?user=-syT6QcAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></li>
+      <li><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM8.5 17H7V9.5h1.5V17zM7.75 8.4a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8zM17 13.2c0 2.2-1.6 3.8-4 3.8h-2.8V9.5H13c2.4 0 4 1.5 4 3.7zm-1.6 0c0-1.6-1-2.4-2.6-2.4h-1.1v4.9h1.1c1.6 0 2.6-.9 2.6-2.5z"/></svg><a href="https://orcid.org/0009-0009-5869-2955" target="_blank" rel="noopener">ORCID</a></li>
+      <li><svg viewBox="0 0 24 24"><path d="M20.4 2H3.6A1.6 1.6 0 0 0 2 3.6v16.8A1.6 1.6 0 0 0 3.6 22h16.8a1.6 1.6 0 0 0 1.6-1.6V3.6A1.6 1.6 0 0 0 20.4 2zM8 19H5V9.5h3V19zM6.5 8.2a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4zM19 19h-3v-4.6c0-1.1 0-2.5-1.5-2.5S12.8 13 12.8 14.3V19h-3V9.5h2.8v1.3h.1a3.1 3.1 0 0 1 2.8-1.5c3 0 3.5 2 3.5 4.5V19z"/></svg><a href="https://www.linkedin.com/in/pitambar-acharya-b28018237/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 4.9.4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg><a href="https://github.com/pitambaracharya" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </aside>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#education">Education</a>
-    <a href="#teaching">Teaching</a>
-    <a href="#research">Research</a>
-    <a href="#publications">Publications</a>
-    <a href="#service">Service</a>
-    <a href="cv.pdf" target="_blank" rel="noopener">CV</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="content">
 
   <!-- ================= ABOUT ================= -->
   <section id="about">
+    <h2>Bio</h2>
     <p>
-      I am a Ph.D. candidate at the University of Alabama at Birmingham (UAB), advised by
+      I am a Ph.D. candidate in the Department of Mathematics at the <a href="https://www.uab.edu/cas/mathematics/" target="_blank" rel="noopener">University of Alabama at Birmingham</a>, advised by
       <a href="https://www.uab.edu/cas/mathematics/people/faculty-directory/yanni-zeng" target="_blank" rel="noopener">Prof. Yanni Zeng</a>.
       My research is in nonlinear partial differential equations, in particular global existence
       of solutions for chemotaxis models arising in mathematical biology. I also work
       on problems in computational mathematics, data science, and scientific machine learning.
     </p>
     <p>
-      I have taught mathematics for over ten years, at UAB, Florida Atlantic University (FAU), and
-      Himalaya College of Engineering (affilated to Tribhuvan University) in Nepal, including Intermediate Algebra, Introductory Statistics, Precalculus, Calculus, and
+      I have taught mathematics for over ten years, at UAB, <a href="https://www.math.fau.edu/" target="_blank" rel="noopener">Florida Atlantic University</a>, and
+      Tribhuvan University in Nepal, including Intermediate Algebra, Precalculus, Calculus, and
       Probability and Statistics. I expect to complete my Ph.D. in Spring 2027 and am currently
-      seeking tenure-track faculty position.
+      seeking tenure-track faculty positions.
     </p>
   </section>
 
@@ -190,7 +161,7 @@
         <span class="date">2022 – 2027</span>
         <div>
           <div class="entry-title">Ph.D., Applied and Computational Mathematics</div>
-          <div class="entry-sub">University of Alabama at Birmingham (expected Spring 2027)<br>
+          <div class="entry-sub">Department of Mathematics, <a href="https://www.uab.edu/cas/mathematics/" target="_blank" rel="noopener">University of Alabama at Birmingham</a> (expected Spring 2027)<br>
           Advisor: Prof. Yanni Zeng</div>
         </div>
       </li>
@@ -198,35 +169,28 @@
         <span class="date">2025</span>
         <div>
           <div class="entry-title">M.S., Mathematics</div>
-          <div class="entry-sub">University of Alabama at Birmingham</div>
+          <div class="entry-sub">Department of Mathematics, <a href="https://www.uab.edu/cas/mathematics/" target="_blank" rel="noopener">University of Alabama at Birmingham</a></div>
         </div>
       </li>
       <li>
         <span class="date">2020 – 2022</span>
         <div>
-          <div class="entry-title">M.S., Applied Mathematics and Statistics (Biostatistics Track)</div>
-          <div class="entry-sub">Florida Atlantic University</div>
+          <div class="entry-title">M.S., Applied Mathematics and Statistics</div>
+          <div class="entry-sub">Department of Mathematics and Statistics, <a href="https://www.math.fau.edu/" target="_blank" rel="noopener">Florida Atlantic University</a></div>
         </div>
       </li>
       <li>
         <span class="date">2012 – 2014</span>
         <div>
-          <div class="entry-title">M.S., Pure Mathematics</div>
-          <div class="entry-sub">Tribhuvan University, Kathmandu, Nepal</div>
+          <div class="entry-title">M.Sc., Mathematics</div>
+          <div class="entry-sub">Central Department of Mathematics, <a href="https://cdmath.tu.edu.np/" target="_blank" rel="noopener">Tribhuvan University</a>, Kathmandu, Nepal</div>
         </div>
       </li>
       <li>
         <span class="date">2010 – 2012</span>
         <div>
-          <div class="entry-title">M.S., Physics</div>
+          <div class="entry-title">M.Sc., Physics</div>
           <div class="entry-sub">Tribhuvan University, Kathmandu, Nepal</div>
-        </div>
-      </li>
-      <li>
-        <span class="date">2007 – 2010</span>
-        <div>
-          <div class="entry-title">B.S., Physics (Minor in Mathematics and Statistics)</div>
-          <div class="entry-sub">Trichandra College, Kathmandu, Nepal</div>
         </div>
       </li>
     </ul>
@@ -240,14 +204,14 @@
       <p>
         I want students to understand <em>why</em> mathematics works, not only how to carry out
         procedures. Whenever I can, I let students discover an idea before I formalize it: before
-        we cover some particular concept in Mathematics or Statistics, students first work through an
+        we cover trigonometric equations, for example, students first work through an
         inquiry-based activity in small groups, so that the method they later learn is one they have
         already begun to build themselves. Inquiry turns a lesson from mastering a skill into
         understanding an idea.
       </p>
       <p>
         I pair this with clear structure, frequent low-stakes practice, and real data and
-        applications (if possible), so that students leave my courses with both skill and confidence. Having
+        applications, so that students leave my courses with both skill and confidence. Having
         taught for more than ten years on two continents, I adapt my teaching to students of very
         different backgrounds and preparation.
       </p>
@@ -257,7 +221,7 @@
       <li>
         <span class="date">2022 – present</span>
         <div>
-          <div class="entry-title">Instructor of Record, University of Alabama at Birmingham</div>
+          <div class="entry-title">Instructor of Record, <a href="https://www.uab.edu/cas/mathematics/" target="_blank" rel="noopener">University of Alabama at Birmingham</a></div>
           <div class="entry-sub">Introduction to Statistics (MA 180) · Calculus I (MA 125) ·
           Precalculus: Algebra and Trigonometry (MA 107) · Precalculus: Trigonometry (MA 106) ·
           Precalculus: Algebra (MA 105) · Intermediate Algebra (MA 102)</div>
@@ -266,7 +230,7 @@
       <li>
         <span class="date">2020 – 2022</span>
         <div>
-          <div class="entry-title">Instructor of Record, Recitation Leader and Teaching Assistant, Florida Atlantic University</div>
+          <div class="entry-title">Instructor of Record, Recitation Leader and Teaching Assistant, <a href="https://www.math.fau.edu/" target="_blank" rel="noopener">Florida Atlantic University</a></div>
           <div class="entry-sub">Methods of Calculus (Instructor of Record) ·
           Recitation Leader for Calculus II and Calculus III ·
           Calculus I and II (MAC 2311, 2312) · Engineering Mathematics I (MAP 3305) ·
@@ -290,13 +254,13 @@
         Statistics is a central part of my teaching. I have taught Probability and Statistics to
         engineering and computer science students for several years in Nepal and Introduction to
         Statistics at UAB, and I hold an M.S. in Applied Mathematics and Statistics (Biostatistics
-        track). In my statistics courses, students work with data sets, interpret results in
-        context, and use tools such as StatCrunch, R, and Python, so that statistical reasoning
+        track). In my statistics courses, students work with real data sets, interpret results in
+        context, and use software such as R, Python and Minitab, so that statistical reasoning
         becomes a practical tool rather than a set of formulas.
       </p>
       <p style="margin-top:10px;">
-        I am prepared to teach introductory and applied statistics, probability for acturial science, statistics for
-        engineers and scientists, regression and data analysis.
+        I am prepared to teach introductory and applied statistics, probability, statistics for
+        engineers and scientists, regression and data analysis, and Bayesian methods.
       </p>
     </div>
 
@@ -313,7 +277,7 @@
   <section id="research">
     <h2>Research</h2>
     <p>
-      <strong>Interests:</strong> non-linear partial differential equations, mathematical biology and chemotaxis,
+      <strong>Interests:</strong> partial differential equations, mathematical biology and chemotaxis,
       hyperbolic–parabolic systems, computational mathematics, data science, and machine learning.
     </p>
 
@@ -410,35 +374,6 @@
     </p>
   </section>
 
-
-  <h3 class="sub">Additional Research Projects</h3>
-        <ul class="pubs">
-          <li>
-            <span class="year">—</span>
-            <div>
-              <p class="pub-title">Comparative Analysis of Data Mining Techniques for Customer Segmentation and Anomaly Detection</p>
-              <p class="pub-meta"><strong>P. Acharya</strong>, L. Zeng, M. Islam</p>
-              <p class="pub-links"><a href="https://figshare.com/articles/preprint/Comparative_Analysis_of_Data_Mining_Techniques_for_Customer_Segmentation_and_Anomaly_Detection/33402334?file=68088160" target="_blank" rel="noopener">Figshare</a></p>
-            </div>
-          </li>
-          <li>
-            <span class="year">—</span>
-            <div>
-              <p class="pub-title">Bin Packing Problem with Machine Learning Techniques</p>
-              <p class="pub-meta">M. Islam, H. Akther Samia, <strong>P. Acharya</strong></p>
-              <p class="pub-links"><a href="https://figshare.com/articles/preprint/Bin_Packing_Problem_with_Machine_Learning_Techniques/33402397?file=68088988" target="_blank" rel="noopener">Figshare</a></p>
-            </div>
-          </li>
-          <li>
-            <span class="year">—</span>
-            <div>
-              <p class="pub-title">Deep Q-Learning for Optimizing Bin Packing Problem: A Deep Reinforcement Learning Approach</p>
-              <p class="pub-meta"><strong>P. Acharya</strong>, O. Francis, M. Islam</p>
-            </div>
-          </li>
-    </section>
-
-
   <!-- ================= AWARDS & SERVICE ================= -->
   <section id="service">
     <h2>Awards and Service</h2>
@@ -494,6 +429,7 @@
     <span>Last updated October 2026</span>
   </footer>
 
+  </main>
 </div>
 </body>
 </html>
